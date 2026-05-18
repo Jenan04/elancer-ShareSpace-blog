@@ -7,9 +7,9 @@ use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * signup any application services.
      */
-    public function register(): void
+    public function signup(): void
     {
         //
     }

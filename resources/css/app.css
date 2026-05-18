@@ -29,7 +29,7 @@
     --color-outline-variant: #c8c7ba;
     --color-error: #ba1a1a;
 
-    --spacing-xs: 4px;
+    /* --spacing-xs: 4px;
     --spacing-sm: 12px;
     --spacing-md: 24px;
     --spacing-lg: 48px;
@@ -37,7 +37,16 @@
     --spacing-base: 8px;
     --spacing-gutter: 24px;
     --spacing-margin-mobile: 20px;
-    --spacing-margin-desktop: 64px;
+    --spacing-margin-desktop: 64px; */
+    --spacing-ss-xs: 4px;
+    --spacing-ss-sm: 12px;
+    --spacing-ss-md: 24px;
+    --spacing-ss-lg: 48px;
+    --spacing-ss-xl: 80px;
+    --spacing-ss-base: 8px;
+    --spacing-ss-gutter: 24px;
+    --spacing-ss-margin-mobile: 20px;
+    --spacing-ss-margin-desktop: 64px;
 
     --font-sans: "Geist", sans-serif;
     --font-instrument: "Instrument Sans", sans-serif;
@@ -104,3 +113,4 @@
     display: inline-block;
     vertical-align: middle;
 }
+
