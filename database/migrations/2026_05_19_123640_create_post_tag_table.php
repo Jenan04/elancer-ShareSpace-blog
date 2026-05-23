@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('post_tag', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignIdFor(\App\Models\Post::class)
+            $table->foreignUuid('post_id')
               ->constrained()
               ->cascadeOnDelete(); 
 
-            $table->foreignIdFor(\App\Models\Tag::class)
+            $table->foreignUuid('tag_id')
+                 ->nullable()
                   ->constrained()
                   ->cascadeOnDelete(); 
 

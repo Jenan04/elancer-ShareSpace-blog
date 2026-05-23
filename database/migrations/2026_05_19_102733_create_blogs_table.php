@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->text('description')->nullable();
 
-            $table->foreignIdFor(\App\Modles\User::class)
+            $table->foreignIdFor(\App\Models\User::class)
                   ->constrained()
                   ->cascadeOnDelete();
     

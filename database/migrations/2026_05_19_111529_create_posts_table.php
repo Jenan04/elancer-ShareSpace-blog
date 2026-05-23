@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->foreginIdFor(\App\Modles\Blog::class)
+            $table->foreignIdFor(\App\Models\Blog::class)
                   ->constrained()
                   ->cascadeOnDelete();
 

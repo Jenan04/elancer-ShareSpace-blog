@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('category_post', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignIdFor(\App\Models\Post::class)
+            $table->foreignUuid('post_id')
                   ->constrained()
                   ->cascadeOnDelete();
 
-           $table->foreignIdFor(\App\Models\Category::class)
+           $table->foreignUuid('category_id')
                   ->constrained()
                   ->cascadeOnDelete();
                   

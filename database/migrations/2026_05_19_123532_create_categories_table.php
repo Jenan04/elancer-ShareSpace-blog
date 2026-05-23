@@ -20,9 +20,9 @@ return new class extends Migration
 
             $table->string('name');
 
-            $table->string('slug');
+            $table->string('slug')->unique();
 
-            $table->unique(['blog_id', 'slug']);
+            // $table->unique(['blog_id', 'slug']);
             $table->timestamps();
         });
     }
