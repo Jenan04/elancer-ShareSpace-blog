@@ -13,11 +13,9 @@ Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 
 // Route::middleware('guest')->group(function () {
     
-//     // شاشة وإنشاء حساب جديد (Sign Up)
 //     Route::get('/signup', [SignupController::class, 'showRegistrationForm'])->name('signup');
 //     Route::post('/signup', [SignupController::class, 'signup']);
 
-//     // شاشة وتسجيل الدخول (Sign In)
 //     // Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 //     // Route::post('/login', [LoginController::class, 'login']);
     
@@ -25,7 +23,6 @@ Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 
 Route::middleware('guest')->group(function () {
     
-    // قمنا بتغيير الاسم البرمجي إلى signup ليطابق الـ Navbar
     Route::get('/signup', [SignupController::class, 'showRegistrationForm'])->name('signup');
     Route::post('/signup', [SignupController::class, 'register']);
     
