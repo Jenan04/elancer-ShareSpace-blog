@@ -47,7 +47,7 @@
                     <div class="w-full border-t border-outline-variant/30"></div>
                 </div>
                 <div class="relative flex justify-center text-xs font-bold">
-                    <span class="bg-[#fcf9f4] px-4 text-on-surface-variant/50 tracking-widest uppercase">OR</span>
+                    <span class=" px-4 text-on-surface-variant/50 tracking-widest uppercase">OR</span>
                 </div>
             </div>
 

@@ -43,6 +43,6 @@ class OtpVerificationController extends Controller
                 ->withErrors(['otp' => 'Invalid or expired verification code.']);
         }
 
-        return redirect()->route('home');
+        return redirect()->route('feed');
     }
 }

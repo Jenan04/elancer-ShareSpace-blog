@@ -3,15 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
+    use HasUuids;
+
     protected $fillable = [
         'name',
         'slug',
     ];
 
-    public function posts(): belongsToMany{
-        return $this->belongsToMany(Post::class);
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
     }
 }
