@@ -18,7 +18,7 @@
         </div>
         <div class="flex items-center gap-6">
 
-            <x-button variant="ghost" size="nav" href="{{ route('login') }}"
+            <x-button variant="ghost" size="nav" href="{{ route('signin') }}"
                 class="hidden lg:block font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200 scale-95 active:scale-90">
                 Sign In
             </x-button>
