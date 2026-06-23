@@ -1,29 +1,31 @@
 <?php
+
+use App\Http\Controllers\Auth\MagicLinkController;
+use App\Http\Controllers\Auth\OtpVerificationController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\SignupController;
 
 Route::get('/', function () {
-  return view('welcome');
+    return view('welcome');
 })->name('landing');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-// Route::get('/signup', [AuthController::class, 'showsignup'])->name('signup');
-
-// Route::middleware('guest')->group(function () {
-    
-//     Route::get('/signup', [SignupController::class, 'showRegistrationForm'])->name('signup');
-//     Route::post('/signup', [SignupController::class, 'signup']);
-
-//     // Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-//     // Route::post('/login', [LoginController::class, 'login']);
-    
-// });
-
 Route::middleware('guest')->group(function () {
-    
-    Route::get('/signup', [SignupController::class, 'showRegistrationForm'])->name('signup');
-    Route::post('/signup', [SignupController::class, 'register']);
-    
+    Route::get('/signup', [RegisterController::class, 'showSignup'])->name('signup');
+    Route::post('/signup', [RegisterController::class, 'store']);
+
+    Route::get('/signin', [RegisterController::class, 'showSignin'])->name('signin');
+    Route::post('/signin', [RegisterController::class, 'store']);
+
+    Route::get('/auth/check-income', [RegisterController::class, 'showCheckIncome'])->name('auth.check-income');
+    Route::post('/auth/verify-otp', [OtpVerificationController::class, 'verify'])->name('auth.verify-otp');
+
+    Route::get('/auth/magic-link', [MagicLinkController::class, 'handle'])
+        ->name('auth.magic-link');
+
+    Route::view('/auth/link-expired', 'auth.link-expired')->name('auth.link-expired');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 });

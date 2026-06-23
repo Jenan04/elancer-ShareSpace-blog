@@ -9,17 +9,15 @@
 
         <div class="text-center max-w-xl mb-12">
             <h1 class="font-sans text-3xl md:text-4xl lg:text-5xl font-bold text-[#162B1E] tracking-tight mb-5 leading-tight">
-                {{-- Let's claim your space --}}
-                Bring your stories to life
+                {{ $heading ?? 'Bring your stories to life' }}
             </h1>
             <p class="font-sans text-base text-on-surface-variant/80 max-w-md mx-auto leading-relaxed">
-                {{-- Enter your email to join a community of builders, thinkers, and tech storytellers. Start transforming your knowledge into impact. --}}
-                Enter your email to secure your piece of ShareSpace. An elegant home for your essays, research, and daily thoughts—designed for everyone who loves to write.
+                {{ $description ?? 'Enter your email to secure your piece of ShareSpace. An elegant home for your essays, research, and daily thoughts—designed for everyone who loves to write.' }}
             </p>
         </div>
 
         <div class="w-full max-w-md px-2">
-            <form action="{{ route('signup') }}" method="POST" class="w-full space-y-5">
+            <form action="{{ $submitRoute ?? route('signup') }}" method="POST" class="w-full space-y-5">
                 @csrf
 
                 <div class="w-full relative group flex flex-col">
@@ -70,8 +68,8 @@
                     By continuing, you agree to our <a class="underline hover:text-accent-purple transition-colors" href="#">Terms of Service</a> and <a class="underline hover:text-accent-purple transition-colors" href="#">Privacy Policy</a>.
                 </p>
                 <div class="pt-2">
-                    <a class="text-sm text-accent-purple font-bold hover:underline flex items-center justify-center gap-ss-1 transition-colors cursor-pointer">
-                        Sign in to an existing blog
+                    <a href="{{ $alternateRoute ?? route('signin') }}" class="text-sm text-accent-purple font-bold hover:underline flex items-center justify-center gap-ss-1 transition-colors cursor-pointer">
+                        {{ $alternateLabel ?? 'Sign in to an existing blog' }}
                         <span class="material-symbols-outlined text-sm font-bold">arrow_forward</span>
                     </a>
                 </div>
