@@ -32,11 +32,9 @@ Route::middleware('guest')->group(function () {
 
 // Publicly accessible Feed, Post Show, and Profile
 Route::get('/feed', [FeedController::class, 'index'])->name('feed');
-Route::get('/posts/{slug}', [PostController::class, 'show'])->name('posts.show');
 Route::get('/p/{username}', [ProfileController::class, 'show'])->name('profile.show');
-Route::post('/posts/{id}/react', [FeedController::class, 'react'])->name('posts.react');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'active.user'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     
     // Authenticated editor endpoints
@@ -44,3 +42,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
     Route::post('/api/ai/suggest-tags', [PostController::class, 'suggestTags'])->name('api.suggest-tags');
 });
+
+Route::get('/posts/{slug}', [PostController::class, 'show'])->name('posts.show');
+Route::post('/posts/{id}/react', [FeedController::class, 'react'])->name('posts.react');
