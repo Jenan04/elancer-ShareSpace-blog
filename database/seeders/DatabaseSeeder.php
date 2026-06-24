@@ -9,6 +9,7 @@ use App\Models\Blog;
 use App\Models\Post;
 use App\Models\PostView;
 use App\Models\Reaction;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +19,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        $adminRole = Role::create([
+            'name' => 'Admin',
+            'abilities' => ['manage_users', 'manage_roles', 'delete_any_post']
+        ]);
+
+        $authorRole = Role::create([
+            'name' => 'Author',
+            'abilities' => ['create_post', 'edit_own_post', 'delete_own_post']
+        ]);
+
+        $userRole = Role::create([
+            'name' => 'User',
+            'abilities' => ['view_posts', 'add_reaction']
+        ]);
         // 1. Create categories
         $categories = [
             Category::create(['name' => 'Technology', 'slug' => 'technology']),
@@ -43,8 +59,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'username' => 'johndoe',
-            'role' => 'user',
         ]);
+        $user1->roles()->sync([$authorRole->id, $userRole->id]);
 
         $blog1 = Blog::create([
             'user_id' => $user1->id,
@@ -57,9 +73,9 @@ class DatabaseSeeder extends Seeder
             'name' => 'Jane Smith',
             'email' => 'jane@example.com',
             'username' => 'janesmith',
-            'role' => 'user',
         ]);
-
+        $user2->roles()->sync([$userRole->id]);
+        
         $blog2 = Blog::create([
             'user_id' => $user2->id,
             'name' => 'Design & Craft',

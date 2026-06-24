@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\LoginCode;
 use App\Models\User;
+use App\Models\Role;
 use App\Notifications\SendLoginCodeNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -90,8 +91,20 @@ class PasswordlessAuthService
     {
         $user = User::firstOrCreate(
             ['email' => $email],
-            ['role' => 'user']
+            // ['role' => 'user']
+            [
+            'name' => explode('@', $email)[0],
+            'slug' => \Illuminate\Support\Str::slug(explode('@', $email)[0]) . '-' . \Illuminate\Support\Str::random(5),
+            'status' => \App\Enums\UserStatus::ACTIVE, 
+        ]
         );
+
+        if ($user->wasRecentlyCreated) {
+        $defaultRole = Role::where('name', 'User')->first();
+        if ($defaultRole) {
+            $user->roles()->attach($defaultRole->id);
+        }
+    }
 
         if (! $user->email_verified_at) {
             $user->forceFill(['email_verified_at' => now()])->save();
