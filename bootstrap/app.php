@@ -11,7 +11,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->redirectGuestsTo(fn () => route('signin'));
+        $middleware->redirectUsersTo(fn () => route('feed'));
+        
+        $middleware->alias([
+        'active.user' => \App\Http\Middleware\EnsureUserIsActive::class,
+    ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

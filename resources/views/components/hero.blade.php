@@ -1,22 +1,22 @@
-<section class="pt-40 pb-20 px-6 overflow-hidden">
+<section class="pt-40 pb-20 px-6 overflow-hidden mb-ss-base">
     <div class="max-w-7xl mx-auto text-center">
         <div
-            class="inline-flex items-center gap-2 bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full mb-base border border-outline-variant/30">
+            class="inline-flex items-center gap-2 bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full mb-ss-lg border border-outline-variant/30">
             <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
             <span class="font-label-md text-label-md">New: AI-Powered Writing Assistant & SEO Sync</span>
         </div>
 
-        <h1 class="font-display text-display text-accent-purple mb-md max-w-4xl mx-auto">
+        <h1 class="font-display text-display text-accent-purple mb-ss-md max-w-4xl mx-auto">
             Publish your thoughts. Build your space.
         </h1>
 
-        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-lg">
+        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-ss-lg">
             ShareSpace is the modern blogging platform where deep thoughts meet dynamic content creation. Write,
             optimize with AI, and share your tech stories with the world effortlessly.
         </p>
 
-        <div class="flex flex-col sm:flex-row gap-base justify-center mb-xl">
-            <x-button variant="primary" size="hero" href="{{ route('register') }}">
+        <div class="flex flex-col sm:flex-row gap-base justify-center mb-ss-xl">
+            <x-button variant="primary" size="hero" href="{{ route('signup') }}">
                 Start Your Blog
             </x-button>
 
@@ -25,12 +25,12 @@
             </x-button>
         </div>
 
-        <div class="relative mt-lg max-w-6xl mx-auto">
+        <div class="relative mt-lg max-w-6xl mx-auto mt-5">
             <div
                 class="absolute -inset-4 bg-gradient-to-b from-primary/10 to-transparent rounded-[40px] blur-3xl -z-10">
             </div>
 
-            <div class="bg-white rounded-2xl shadow-2xl p-4 md:p-base border border-outline-variant/10">
+            <div class="bg-white rounded-2xl shadow-2xl p-4 md:p-ss-base border border-outline-variant/10">
                 <img alt="SaaS Blog Dashboard Mockup" class="rounded-xl w-full shadow-inner" {{--
                     src="{{ asset('assets/blog-dashboard.png') }}" --}}
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1uLm6G84Z9yKv34oqph4P7Rtsn9P_63jDmde9Ba-p4eQQEDWCUyUxoDWy3SJrmVayX7ZMNeDGbDgxFUcv5QP2T2F2qyvT-ITJCkFxY8MNI35C8aZly1YD_5YQRuQSLW156D5nYT4Xoixq8Geu8smIEdOdDV8Zv293lEz95nWPlzkyFJy6uVrmIaiWi8rMpHD1YGsJFmPBMEHIdbut8veQZXaR03d6Aq1SyiJAJa0jPag07ysUNb8i9JkuZ6-HdxAT0M4zs2A4cM8">
@@ -46,7 +46,7 @@
                     <span class="text-sm text-on-surface font-bold leading-tight">AI Blogging Co-pilot</span>
                 </div>
 
-                <p class="text-xs text-on-surface-variant leading-relaxed mb-4">
+                <p class="text-xs text-on-surface-variant leading-relaxed mb-ss-base">
                     "I've analyzed your draft. Adding these 3 keywords will improve your SEO ranking by 25%."
                 </p>
 

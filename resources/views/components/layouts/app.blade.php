@@ -14,12 +14,12 @@
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
     </style>
 </head>
-<body class="bg-surface text-on-surface">
-    <x-navbar />
-    <x-hero />
-    <x-features />
-    <x-cta />
-    <x-footer />
+<body 
+class="bg-surface text-on-surface min-h-screen w-full m-0 p-0 block"
+{{-- class="bg-surface text-on-surface" --}}
+>
+
+    {{ $slot }}
 
    
 </body>
