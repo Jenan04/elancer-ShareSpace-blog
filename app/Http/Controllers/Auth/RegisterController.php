@@ -45,7 +45,7 @@ class RegisterController extends Controller
 
     public function showCheckIncome(): View|RedirectResponse
     {
-        $email = session('email');
+        $email = session('email') ?? old('email');
 
         if (! $email) {
             return redirect()->route('signup');

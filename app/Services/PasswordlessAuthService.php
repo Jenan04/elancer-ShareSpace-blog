@@ -34,7 +34,7 @@ class PasswordlessAuthService
         $magicLink = URL::temporarySignedRoute(
             'auth.magic-link',
             $expiresAt,
-            ['token' => $plainToken]
+            ['token' => $plainToken, 'email' => $email]
         );
 
         Notification::route('mail', $email)->notify(
@@ -69,12 +69,13 @@ class PasswordlessAuthService
         return $this->authenticateUser($email, $loginCode);
     }
 
-    public function verifyMagicLinkToken(string $token): ?User
+    public function verifyMagicLinkToken(string $token, string $email): ?User
     {
-        $loginCode = LoginCode::where('expires_at', '>', now())->get()
-            ->first(fn (LoginCode $code) => Hash::check($token, $code->token));
+        // $loginCode = LoginCode::where('expires_at', '>', now())->get()
+        //     ->first(fn (LoginCode $code) => Hash::check($token, $code->token));
+        $loginCode = LoginCode::where('email', $email)->first();
 
-        if (! $loginCode) {
+        if (! $loginCode|| ! Hash::check($token, $loginCode->token)) {
             return null;
         }
 

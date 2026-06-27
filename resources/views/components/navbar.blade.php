@@ -5,6 +5,10 @@
         
         <div class="hidden md:flex items-center gap-8">
             @auth
+                @canany(['manage_roles', 'manage_users'])
+                <a class="relative font-label-md text-label-md text-primary font-bold hover:text-primary/80 transition-colors duration-300 pb-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-primary"
+                    href="{{ route('roles.index') }}">Dashboard</a>
+                @endcanany
                 <a class="relative font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-300 pb-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-primary hover:after:w-full after:transition-all after:duration-300"
                     href="{{ route('feed') }}">Feed</a>
 
