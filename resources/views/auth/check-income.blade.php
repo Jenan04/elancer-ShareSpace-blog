@@ -18,9 +18,9 @@
         </div>
 
         <div class="w-full max-w-md px-2">
-            <form action="{{ route('auth.verify-otp') }}" method="POST" class="w-full space-y-5">
+            <form action="{{ route('auth.verify-otp') }}" method="POST" class="w-full space-y-5" novalidate>
                 @csrf
-                <input type="hidden" name="email" value="{{ $email }}">
+                <input type="hidden" name="email" value="{{ $email ?? old('email') }}">
 
                 <div class="w-full relative group flex flex-col">
                     <label for="otp" class="text-xs font-bold text-on-surface-variant/70 mb-2 px-1 uppercase tracking-widest">
@@ -35,7 +35,7 @@
                         required
                         type="text"
                         inputmode="numeric"
-                        pattern="[0-9]{6}"
+                        pattern="[0-9]{1,6}"
                         maxlength="6"
                         autocomplete="one-time-code"
                     />

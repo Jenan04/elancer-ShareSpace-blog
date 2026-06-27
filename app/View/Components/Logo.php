@@ -11,7 +11,7 @@ class Logo extends Component
     public string $targetRoute;
     public function __construct()
     {
-        $this->targetRoute = auth()-> check() ? route('home') : url('/');
+        $this->targetRoute = auth()-> check() ? route('feed') : url('/');
     }
 
     /**

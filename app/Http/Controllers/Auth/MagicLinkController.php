@@ -27,6 +27,6 @@ class MagicLinkController extends Controller
             return redirect()->route('auth.link-expired');
         }
 
-        return redirect()->route('home');
+        return redirect()->route('feed');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\LoginCode;
 use App\Models\User;
+use App\Models\Role;
 use App\Notifications\SendLoginCodeNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -33,7 +34,7 @@ class PasswordlessAuthService
         $magicLink = URL::temporarySignedRoute(
             'auth.magic-link',
             $expiresAt,
-            ['token' => $plainToken]
+            ['token' => $plainToken, 'email' => $email]
         );
 
         Notification::route('mail', $email)->notify(
@@ -68,12 +69,13 @@ class PasswordlessAuthService
         return $this->authenticateUser($email, $loginCode);
     }
 
-    public function verifyMagicLinkToken(string $token): ?User
+    public function verifyMagicLinkToken(string $token, string $email): ?User
     {
-        $loginCode = LoginCode::where('expires_at', '>', now())->get()
-            ->first(fn (LoginCode $code) => Hash::check($token, $code->token));
+        // $loginCode = LoginCode::where('expires_at', '>', now())->get()
+        //     ->first(fn (LoginCode $code) => Hash::check($token, $code->token));
+        $loginCode = LoginCode::where('email', $email)->first();
 
-        if (! $loginCode) {
+        if (! $loginCode|| ! Hash::check($token, $loginCode->token)) {
             return null;
         }
 
@@ -90,8 +92,20 @@ class PasswordlessAuthService
     {
         $user = User::firstOrCreate(
             ['email' => $email],
-            ['role' => 'user']
+            // ['role' => 'user']
+            [
+            'name' => explode('@', $email)[0],
+            'slug' => \Illuminate\Support\Str::slug(explode('@', $email)[0]) . '-' . \Illuminate\Support\Str::random(5),
+            'status' => \App\Enums\UserStatus::ACTIVE, 
+        ]
         );
+
+        if ($user->wasRecentlyCreated) {
+        $defaultRole = Role::where('name', 'User')->first();
+        if ($defaultRole) {
+            $user->roles()->attach($defaultRole->id);
+        }
+    }
 
         if (! $user->email_verified_at) {
             $user->forceFill(['email_verified_at' => now()])->save();

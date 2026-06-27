@@ -38,11 +38,16 @@ class OtpVerificationController extends Controller
                     ->withErrors(['email' => 'Too many failed attempts. Please request a new code.']);
             }
 
-            return back()
-                ->withInput()
-                ->withErrors(['otp' => 'Invalid or expired verification code.']);
+            // return back()
+            //     ->withInput()
+            //     ->withErrors(['otp' => 'Invalid or expired verification code.']);
+            return redirect()
+            ->route('auth.check-income')
+            ->with('email', $email) 
+            ->withInput($request->except('otp')) 
+            ->withErrors(['otp' => 'Invalid or expired verification code.']);
         }
 
-        return redirect()->route('home');
+        return redirect()->route('feed');
     }
 }
